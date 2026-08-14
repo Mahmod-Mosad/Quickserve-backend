@@ -19,7 +19,7 @@ public class User {
     @GeneratedValue
     private long userId;
     @Column( nullable = false)
-    private String name;
+    private String userName;
     @Column(unique = true, nullable = false)
     private String email;
     @Column( nullable = false)
@@ -38,7 +38,7 @@ public class User {
     @Column(nullable = true)
     @Enumerated(EnumType.STRING)
     private ApprovalStatus approvalStatus;
-    private Boolean enabled;
+    private Boolean enabled = true;
     private LocalDateTime createdAt;
 
 }
