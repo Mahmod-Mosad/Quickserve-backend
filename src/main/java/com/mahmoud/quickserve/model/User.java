@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -42,6 +43,8 @@ public class User {
     private ApprovalStatus approvalStatus;
     private Boolean enabled = true;
     private LocalDateTime createdAt;
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 
 
 }

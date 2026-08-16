@@ -36,6 +36,8 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant")
     private List<RestaurantStaff> staffList;
 
+    @OneToMany(mappedBy = "restaurant")
+    private List<Order> orderList;
 
 
 
