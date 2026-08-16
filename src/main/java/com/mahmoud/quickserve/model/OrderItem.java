@@ -32,5 +32,7 @@ public class OrderItem {
     @JoinColumn(name = "menuItemId")
     private MenuItem  menuItem;
 
+    @OneToMany(mappedBy = "orderItem")
+    private  List<OrderItemOption> orderItemOptions;
 
 }
