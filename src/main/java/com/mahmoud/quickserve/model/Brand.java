@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 public class Brand {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long brandId;
     @Column(nullable = false)
     private String brandName;
@@ -28,5 +28,8 @@ public class Brand {
     private List<Restaurant>  restaurants;
     @OneToMany(mappedBy = "brand")
     private List<Category> categories ;
+
+    @OneToMany(mappedBy = "brand")
+    private List<MenuItem>  menuItems;
 
 }

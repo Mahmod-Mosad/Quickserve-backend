@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RestaurantStaff {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
