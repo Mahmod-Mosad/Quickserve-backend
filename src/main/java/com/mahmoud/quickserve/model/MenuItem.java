@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,6 +31,8 @@ public class MenuItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brandId")
     private Brand brand;
+    @OneToMany(mappedBy = "menuItem")
+    private List<MenuItemOptionGroup>  menuItemOptionGroups;
 
 
 }
