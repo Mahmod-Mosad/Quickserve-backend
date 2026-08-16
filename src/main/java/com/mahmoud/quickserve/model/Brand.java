@@ -26,5 +26,7 @@ public class Brand {
     private BigDecimal commissionRate;
     @OneToMany(mappedBy = "brand")
     private List<Restaurant>  restaurants;
+    @OneToMany(mappedBy = "brand")
+    private List<Category> categories ;
 
 }
