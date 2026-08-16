@@ -1,11 +1,12 @@
 package com.mahmoud.quickserve.model;
 
-import com.mahmoud.quickserve.enums.ApprovalStatus;
+import com.mahmoud.quickserve.model.enums.ApprovalStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Setter
@@ -23,5 +24,7 @@ public class Brand {
     private ApprovalStatus approvalStatus = ApprovalStatus.PENDING_APPROVAL;
     @Column(nullable = false)
     private BigDecimal commissionRate;
+    @OneToMany(mappedBy = "brand")
+    private List<Restaurant>  restaurants;
 
 }

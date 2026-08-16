@@ -1,4 +1,4 @@
-package com.mahmoud.quickserve.enums;
+package com.mahmoud.quickserve.model.enums;
 
 public enum Role {
     CUSTOMER,

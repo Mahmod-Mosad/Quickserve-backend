@@ -1,18 +1,20 @@
 package com.mahmoud.quickserve.model;
 
-import com.mahmoud.quickserve.enums.ApprovalStatus;
-import com.mahmoud.quickserve.enums.Role;
-import com.mahmoud.quickserve.enums.Status;
-import com.mahmoud.quickserve.enums.VehicleType;
+import com.mahmoud.quickserve.model.enums.ApprovalStatus;
+import com.mahmoud.quickserve.model.enums.Role;
+import com.mahmoud.quickserve.model.enums.Status;
+import com.mahmoud.quickserve.model.enums.VehicleType;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
 
+
 @Entity
-@Setter
 @Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "users")
 public class User {
     @Id
