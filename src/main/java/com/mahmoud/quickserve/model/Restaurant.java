@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -15,7 +17,7 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long  restaurantId;
     @Column(nullable = false)
     private String   address;
     @Column(nullable = false)
@@ -31,6 +33,8 @@ public class Restaurant {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
     private Brand brand;
+    @OneToMany(mappedBy = "restaurant")
+    private List<RestaurantStaff> staffList;
 
 
 
