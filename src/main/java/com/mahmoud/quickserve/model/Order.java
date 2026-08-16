@@ -9,11 +9,13 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue
@@ -37,5 +39,9 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurantId")
     private Restaurant restaurant;
+
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
 }
 
