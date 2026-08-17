@@ -8,6 +8,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -42,6 +44,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private ApprovalStatus approvalStatus;
     private Boolean enabled = true;
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
