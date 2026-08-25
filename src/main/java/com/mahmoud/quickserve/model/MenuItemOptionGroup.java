@@ -1,5 +1,6 @@
 package com.mahmoud.quickserve.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class MenuItemOptionGroup {
     private MenuItem menuItem;
 
      @OneToMany(mappedBy = "menuItemOptionGroup")
+     @JsonIgnore
     private List<MenuItemOptionValue>  menuItemOptionValues;
 
 }

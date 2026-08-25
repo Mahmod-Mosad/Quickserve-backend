@@ -1,5 +1,6 @@
 package com.mahmoud.quickserve.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,7 @@ public class MenuItem {
     @JoinColumn(name = "brandId")
     private Brand brand;
     @OneToMany(mappedBy = "menuItem")
+    @JsonIgnore
     private List<MenuItemOptionGroup>  menuItemOptionGroups;
 
 

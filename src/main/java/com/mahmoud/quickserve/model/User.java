@@ -1,5 +1,6 @@
 package com.mahmoud.quickserve.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mahmoud.quickserve.model.enums.ApprovalStatus;
 import com.mahmoud.quickserve.model.enums.Role;
 import com.mahmoud.quickserve.model.enums.Status;
@@ -23,7 +24,7 @@ public class User {
     @Id
     @GeneratedValue
     private long userId;
-    @Column( nullable = false)
+    @Column(unique = true, nullable = false)
     private String userName;
     @Column(unique = true, nullable = false)
     private String email;
@@ -50,8 +51,16 @@ public class User {
     private List<Order> orders;
 
     @OneToMany(mappedBy = "driver")
+    @JsonIgnore
     private List<Delivery> deliveries;
+    @OneToOne
+    @JoinColumn(name = "userId", unique = true)
+    private User user;
 
+
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private DriverTripCounter driverTripCounter;
 
 
 }

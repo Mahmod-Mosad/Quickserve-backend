@@ -1,5 +1,6 @@
 package com.mahmoud.quickserve.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class OrderItem {
     private MenuItem  menuItem;
 
     @OneToMany(mappedBy = "orderItem")
+    @JsonIgnore
     private  List<OrderItemOption> orderItemOptions;
 
 }

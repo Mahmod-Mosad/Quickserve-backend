@@ -1,5 +1,6 @@
 package com.mahmoud.quickserve.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mahmoud.quickserve.model.enums.ApprovalStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -25,11 +26,18 @@ public class Brand {
     @Column(nullable = false)
     private BigDecimal commissionRate;
     @OneToMany(mappedBy = "brand")
+    @JsonIgnore
     private List<Restaurant>  restaurants;
     @OneToMany(mappedBy = "brand")
+    @JsonIgnore
     private List<Category> categories ;
 
     @OneToMany(mappedBy = "brand")
+    @JsonIgnore
     private List<MenuItem>  menuItems;
+
+    @OneToOne(mappedBy = "brand")
+    @JsonIgnore
+    private BrandWallet brandWallet;
 
 }

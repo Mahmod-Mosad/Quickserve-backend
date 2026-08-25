@@ -1,5 +1,6 @@
 package com.mahmoud.quickserve.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,9 +35,11 @@ public class Restaurant {
     @JoinColumn(name = "brand_id")
     private Brand brand;
     @OneToMany(mappedBy = "restaurant")
+    @JsonIgnore
     private List<RestaurantStaff> staffList;
 
     @OneToMany(mappedBy = "restaurant")
+    @JsonIgnore
     private List<Order> orderList;
 
 

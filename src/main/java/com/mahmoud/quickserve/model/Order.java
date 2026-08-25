@@ -1,5 +1,6 @@
 package com.mahmoud.quickserve.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mahmoud.quickserve.model.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -42,9 +43,19 @@ public class Order {
 
 
     @OneToMany(mappedBy = "order")
+    @JsonIgnore
     private List<OrderItem> orderItems;
 
     @OneToOne(mappedBy = "order")
+    @JsonIgnore
     private Delivery delivery;
+
+    @OneToOne(mappedBy = "order")
+    @JsonIgnore
+    private RestaurantRating restaurantRating;
+
+    @OneToOne(mappedBy = "order")
+    @JsonIgnore
+    private DriverRating driverRating;
 }
 
