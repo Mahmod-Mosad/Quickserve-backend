@@ -1,21 +1,45 @@
 package com.mahmoud.quickserve.service;
 
+import com.mahmoud.quickserve.DTO.CustomerRegisterRequest;
+import com.mahmoud.quickserve.mapper.UserMapper;
 import com.mahmoud.quickserve.model.User;
+import com.mahmoud.quickserve.model.enums.Role;
 import com.mahmoud.quickserve.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final  UserMapper mapper;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,
+                           PasswordEncoder passwordEncoder,
+                           UserMapper mapper) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.mapper = mapper;
     }
 
-    public User registerUser(User user) {
+    public User registerCustomer(CustomerRegisterRequest customerRegisterRequest) {
+
+        if (userRepository.findByEmail(customerRegisterRequest.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("email already exists");
+        }
+
+        User user = mapper.toEntity(customerRegisterRequest);
+
+        user.setPassword(
+                passwordEncoder.encode(customerRegisterRequest.getPassword())
+        );
+
+        user.setRole(Role.CUSTOMER);
 
         return userRepository.save(user);
     }

@@ -1,6 +1,6 @@
 package com.mahmoud.quickserve.service;
 
-import com.mahmoud.quickserve.DTO.RestaurantResponseDTO;
+import com.mahmoud.quickserve.DTO.RestaurantResponse;
 import com.mahmoud.quickserve.model.Restaurant;
 import com.mahmoud.quickserve.repository.RestaurantRepository;
 import org.springframework.stereotype.Service;
@@ -17,8 +17,8 @@ public class RestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    public RestaurantResponseDTO convertToDTO(Restaurant restaurant) {
-        RestaurantResponseDTO dto = new RestaurantResponseDTO();
+    public RestaurantResponse convertToDTO(Restaurant restaurant) {
+        RestaurantResponse dto = new RestaurantResponse();
         dto.setRestaurantId(restaurant.getRestaurantId());
         dto.setAddress(restaurant.getAddress());
         dto.setLatitude(restaurant.getLatitude());
@@ -32,10 +32,10 @@ public class RestaurantService {
 
 
 
-     public List<RestaurantResponseDTO>  getNearbyRestaurants(Double customerLat,Double customerLng) {
+     public List<RestaurantResponse>  getNearbyRestaurants(Double customerLat, Double customerLng) {
 
          List<Restaurant > restaurants= restaurantRepository.findNearbyRestaurants(customerLat,customerLng,MAX_DISTANCE_KM);
-         List<RestaurantResponseDTO> dtos = restaurants.stream()
+         List<RestaurantResponse> dtos = restaurants.stream()
                  .map(this::convertToDTO)
                  .toList();
          return dtos;

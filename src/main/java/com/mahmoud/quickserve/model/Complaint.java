@@ -26,7 +26,7 @@ public class Complaint {
     @CreationTimestamp
     @Column(nullable = false)
     private LocalDate complaintDate;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orderId")
     private Order order;
     @ManyToOne(fetch = FetchType.LAZY)

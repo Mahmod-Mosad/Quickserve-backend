@@ -1,7 +1,6 @@
 package com.mahmoud.quickserve.controller;
 
-import com.mahmoud.quickserve.DTO.RestaurantResponseDTO;
-import com.mahmoud.quickserve.model.Restaurant;
+import com.mahmoud.quickserve.DTO.RestaurantResponse;
 import com.mahmoud.quickserve.service.RestaurantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +21,11 @@ public class RestaurantController {
     }
 
     @GetMapping("/nearby")
-    public ResponseEntity<List<RestaurantResponseDTO>> getNearbyRestaurants(
+    public ResponseEntity<List<RestaurantResponse>> getNearbyRestaurants(
             @RequestParam Double lat,
             @RequestParam Double lng) {
 
-        List<RestaurantResponseDTO>  restaurantDTOList = restaurantService.getNearbyRestaurants(lat, lng);
+        List<RestaurantResponse>  restaurantDTOList = restaurantService.getNearbyRestaurants(lat, lng);
         return new ResponseEntity<>(restaurantDTOList, HttpStatus.OK);
 
     }

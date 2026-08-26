@@ -1,15 +1,17 @@
 package com.mahmoud.quickserve.controller;
 
+import com.mahmoud.quickserve.DTO.CustomerRegisterRequest;
 import com.mahmoud.quickserve.model.User;
 import com.mahmoud.quickserve.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("api/users")
 public class UserController {
     private final UserService userService;
 
@@ -29,14 +31,20 @@ public class UserController {
 
 
 
+    @PostMapping("register/customer")
+    public ResponseEntity<?> registerCustomer(@RequestBody CustomerRegisterRequest request) {
+        try {
+            User savedUser = userService.registerCustomer(request);
 
-    @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
+            return ResponseEntity.ok(Map.of(
+                    "message", "Customer registered successfully",
+                    "userId", savedUser.getId(),
+                    "email", savedUser.getEmail()
+            ));
 
-        User result = userService.registerUser(user);
-
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
-
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
     }
 
     @PutMapping("/{id}")
